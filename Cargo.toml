@@ -1,0 +1,21 @@
+[package]
+name = "slint-cef"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "CEF offscreen rendering helpers for Slint (legacy/experimental)."
+
+[features]
+# No default features: keep this crate out of builds unless explicitly enabled.
+default = []
+# Enables the offscreen renderer module.
+renderer = ["dep:cef", "dep:wgpu", "dep:slint", "dep:anyhow"]
+
+[dependencies]
+# These are optional so the crate can sit as a submodule without impacting builds.
+anyhow = { version = "1.0", optional = true }
+slint = { version = "=1.14.1", default-features = false, features = ["raw-window-handle-06", "compat-1-2"], optional = true }
+wgpu = { version = "0.20", optional = true }
+
+# The project docs refer to cef crate version 141.6.
+cef = { version = "141.6", optional = true }
